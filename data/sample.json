@@ -5,5 +5,16 @@
   "aggregate_id": "skills_exhibit_operations-001",
   "occurred_at": "2026-09-20T15:00:00+08:00",
   "version": 1,
-  "summary": "登记技能展项运行台的首条领域记录"
+  "summary": "登记技能展项运行台的首条领域记录",
+  "exhibit_id": "skills_exhibit_operations-001",
+  "exhibit_version": 1,
+  "content_id": null,
+  "scope_all": true,
+  "decision": "approved",
+  "reviewer_id": "staff-edu-sample",
+  "reviewed_at": "2026-09-20T15:00:00+08:00",
+  "based_on_rules": {
+    "competition_id": "comp-sample-2026",
+    "rules_version": 1
+  }
 }

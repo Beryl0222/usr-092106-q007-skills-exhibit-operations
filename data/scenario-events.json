@@ -1,0 +1,1716 @@
+[
+  {
+    "event_id": "sce-001",
+    "event_type": "COMPETITION_RULES_PUBLISHED",
+    "aggregate_type": "competition",
+    "aggregate_id": "comp-welding-2026",
+    "occurred_at": "2026-09-25T10:00:00+08:00",
+    "version": 1,
+    "summary": "发布2026焊接赛项规则第3版，9月26日生效",
+    "competition_id": "comp-welding-2026",
+    "rules_version": 3,
+    "title": "2026世界技能大赛·焊接",
+    "effective_at": "2026-09-26T00:00:00+08:00",
+    "change_summary": [
+      "初始发布：试板组对、防护与评分口径"
+    ]
+  },
+  {
+    "event_id": "sce-002",
+    "event_type": "EXHIBIT_REGISTERED",
+    "aggregate_type": "exhibit",
+    "aggregate_id": "exh-weld-vr",
+    "occurred_at": "2026-09-26T09:00:00+08:00",
+    "version": 1,
+    "summary": "登记焊接模拟互动展项及其组件与体验模式",
+    "exhibit_id": "exh-weld-vr",
+    "competition_id": "comp-welding-2026",
+    "category": "welding",
+    "components": [
+      {
+        "component_id": "c-welder-main",
+        "name": "模拟焊机主机",
+        "safety_relevant": true
+      },
+      {
+        "component_id": "c-fume-extractor",
+        "name": "烟尘净化单元",
+        "safety_relevant": true
+      },
+      {
+        "component_id": "c-vr-headset",
+        "name": "VR面屏",
+        "safety_relevant": false
+      },
+      {
+        "component_id": "c-safety-curtain",
+        "name": "遮光防护帘",
+        "safety_relevant": true
+      },
+      {
+        "component_id": "c-control-panel-1",
+        "name": "主控面板",
+        "safety_relevant": false
+      },
+      {
+        "component_id": "c-control-panel-2",
+        "name": "观摩区副面板",
+        "safety_relevant": false
+      }
+    ],
+    "experience_modes": [
+      "guided_demo",
+      "assisted_practice",
+      "vr_training",
+      "low_stimulus_watch"
+    ],
+    "suitability": {
+      "min_age_years": 6,
+      "max_age_years": null,
+      "supervision_required_under": 12
+    },
+    "accessibility": {
+      "wheelchair_accessible": true,
+      "assisted_device_supported": true,
+      "companion_seat": true,
+      "sensory_low_stimulus_mode": true
+    },
+    "base_duration_seconds": 600
+  },
+  {
+    "event_id": "sce-003",
+    "event_type": "EXHIBIT_VERSION_PUBLISHED",
+    "aggregate_type": "exhibit_version",
+    "aggregate_id": "exh-weld-vr@1",
+    "occurred_at": "2026-09-26T09:30:00+08:00",
+    "version": 1,
+    "summary": "发布焊接展项内容第1版，对齐规则第3版",
+    "exhibit_id": "exh-weld-vr",
+    "exhibit_version": 1,
+    "based_on_rules": {
+      "competition_id": "comp-welding-2026",
+      "rules_version": 3
+    },
+    "replaces_version": null,
+    "published_at": "2026-09-26T09:30:00+08:00",
+    "contents": [
+      {
+        "content_id": "ct-0101-guide",
+        "kind": "guide_script",
+        "title": "焊接展项讲解词（仰焊试板段）"
+      },
+      {
+        "content_id": "ct-0102-exp",
+        "kind": "experience_script",
+        "title": "辅助实操体验脚本"
+      },
+      {
+        "content_id": "ct-0103-label",
+        "kind": "label",
+        "title": "防护装备说明牌"
+      }
+    ],
+    "mode_durations_seconds": {
+      "guided_demo": 720,
+      "assisted_practice": 600,
+      "vr_training": 480,
+      "low_stimulus_watch": 300
+    },
+    "suitability": {
+      "min_age_years": 6,
+      "max_age_years": null,
+      "supervision_required_under": 12
+    },
+    "accessibility": {
+      "wheelchair_accessible": true,
+      "assisted_device_supported": true,
+      "companion_seat": true,
+      "sensory_low_stimulus_mode": true
+    }
+  },
+  {
+    "event_id": "sce-004",
+    "event_type": "CONTENT_APPROVED",
+    "aggregate_type": "exhibit_version",
+    "aggregate_id": "exh-weld-vr@1",
+    "occurred_at": "2026-09-26T14:00:00+08:00",
+    "version": 2,
+    "summary": "教育专员审核通过第1版全部讲解与体验脚本",
+    "exhibit_id": "exh-weld-vr",
+    "exhibit_version": 1,
+    "content_id": null,
+    "scope_all": true,
+    "decision": "approved",
+    "reviewer_id": "staff-edu-chenxue",
+    "reviewed_at": "2026-09-26T14:00:00+08:00",
+    "based_on_rules": {
+      "competition_id": "comp-welding-2026",
+      "rules_version": 3
+    }
+  },
+  {
+    "event_id": "sce-005",
+    "event_type": "CAPACITY_PLAN_SET",
+    "aggregate_type": "exhibit",
+    "aggregate_id": "exh-weld-vr",
+    "occurred_at": "2026-09-27T09:00:00+08:00",
+    "version": 2,
+    "summary": "设定各模式容量、团体上限、候补窗口与实测等待口径",
+    "exhibit_id": "exh-weld-vr",
+    "mode_capacities": {
+      "guided_demo": {
+        "seats": 12,
+        "assisted_device_slots": 2,
+        "minimum_gap_seconds": 300
+      },
+      "assisted_practice": {
+        "seats": 4,
+        "assisted_device_slots": 4,
+        "minimum_gap_seconds": 420
+      },
+      "vr_training": {
+        "seats": 6,
+        "assisted_device_slots": 1,
+        "minimum_gap_seconds": 300
+      },
+      "low_stimulus_watch": {
+        "seats": 8,
+        "assisted_device_slots": 2,
+        "minimum_gap_seconds": 120
+      }
+    },
+    "group_policy": {
+      "max_party_size": 15,
+      "max_share_of_capacity": 0.5,
+      "min_lead_hours": 24
+    },
+    "standby_policy": {
+      "promotion_window_seconds": 120,
+      "expiry_after_seconds": 300
+    },
+    "wait_time_policy": {
+      "use_observed_throughput": true,
+      "horizon_seconds": 1800,
+      "accommodation_extra_seconds": 180
+    }
+  },
+  {
+    "event_id": "sce-006",
+    "event_type": "COMPETITION_RULES_PUBLISHED",
+    "aggregate_type": "competition",
+    "aggregate_id": "comp-welding-2026",
+    "occurred_at": "2026-10-02T16:00:00+08:00",
+    "version": 2,
+    "summary": "发布焊接赛项规则第4版，10月4日生效",
+    "competition_id": "comp-welding-2026",
+    "rules_version": 4,
+    "title": "2026世界技能大赛·焊接",
+    "effective_at": "2026-10-04T00:00:00+08:00",
+    "change_summary": [
+      "仰焊试板角度公差由15°收紧为10°",
+      "防护面屏遮光号说明更新",
+      "安全口令增加双人复核步骤"
+    ]
+  },
+  {
+    "event_id": "sce-007",
+    "event_type": "EXHIBIT_VERSION_PUBLISHED",
+    "aggregate_type": "exhibit_version",
+    "aggregate_id": "exh-weld-vr@2",
+    "occurred_at": "2026-10-03T10:00:00+08:00",
+    "version": 1,
+    "summary": "发布焊接展项内容第2版，对齐规则第4版",
+    "exhibit_id": "exh-weld-vr",
+    "exhibit_version": 2,
+    "based_on_rules": {
+      "competition_id": "comp-welding-2026",
+      "rules_version": 4
+    },
+    "replaces_version": 1,
+    "published_at": "2026-10-03T10:00:00+08:00",
+    "contents": [
+      {
+        "content_id": "ct-0201-guide",
+        "kind": "guide_script",
+        "title": "焊接展项讲解词（10°公差与双人复核口令）"
+      },
+      {
+        "content_id": "ct-0202-exp",
+        "kind": "experience_script",
+        "title": "辅助实操体验脚本（遮光号更新）"
+      },
+      {
+        "content_id": "ct-0203-label",
+        "kind": "label",
+        "title": "防护装备说明牌（第2版）"
+      }
+    ],
+    "mode_durations_seconds": {
+      "guided_demo": 720,
+      "assisted_practice": 600,
+      "vr_training": 480,
+      "low_stimulus_watch": 300
+    },
+    "suitability": {
+      "min_age_years": 6,
+      "max_age_years": null,
+      "supervision_required_under": 12
+    },
+    "accessibility": {
+      "wheelchair_accessible": true,
+      "assisted_device_supported": true,
+      "companion_seat": true,
+      "sensory_low_stimulus_mode": true
+    }
+  },
+  {
+    "event_id": "sce-008",
+    "event_type": "CONTENT_APPROVED",
+    "aggregate_type": "exhibit_version",
+    "aggregate_id": "exh-weld-vr@2",
+    "occurred_at": "2026-10-03T15:00:00+08:00",
+    "version": 2,
+    "summary": "第2版内容依据规则第4版审核通过",
+    "exhibit_id": "exh-weld-vr",
+    "exhibit_version": 2,
+    "content_id": null,
+    "scope_all": true,
+    "decision": "approved",
+    "reviewer_id": "staff-edu-chenxue",
+    "reviewed_at": "2026-10-03T15:00:00+08:00",
+    "based_on_rules": {
+      "competition_id": "comp-welding-2026",
+      "rules_version": 4
+    }
+  },
+  {
+    "event_id": "sce-009",
+    "event_type": "RESERVATION_REQUESTED",
+    "aggregate_type": "reservation",
+    "aggregate_id": "res-ind-1998",
+    "occurred_at": "2026-10-03T15:50:00+08:00",
+    "version": 1,
+    "summary": "规则切换前夜的散客VR训练预约",
+    "reservation_id": "res-ind-1998",
+    "exhibit_id": "exh-weld-vr",
+    "mode_id": "vr_training",
+    "party_type": "individual",
+    "party_size": 1,
+    "children_count": 0,
+    "accessibility_needs": [],
+    "contact_ref": "contact-token-7b1e",
+    "requested_slot_at": "2026-10-03T16:30:00+08:00",
+    "joined_queue_at": "2026-10-03T15:50:00+08:00"
+  },
+  {
+    "event_id": "sce-010",
+    "event_type": "SLOT_ASSIGNED",
+    "aggregate_type": "queue_slot",
+    "aggregate_id": "slot-4998",
+    "occurred_at": "2026-10-03T15:55:00+08:00",
+    "version": 1,
+    "summary": "为前夜散客分配VR训练时段",
+    "slot_id": "slot-4998",
+    "reservation_id": "res-ind-1998",
+    "standby_entry_id": null,
+    "exhibit_id": "exh-weld-vr",
+    "mode_id": "vr_training",
+    "assigned_from": "reservation",
+    "party_size": 1,
+    "seats_taken": 1,
+    "queue_sequence": 1998,
+    "starts_at": "2026-10-03T16:30:00+08:00",
+    "duration_planned_seconds": 480,
+    "wait_estimate_seconds": 300,
+    "estimate_basis": "observed_throughput",
+    "accessibility_allocations": {
+      "assisted_device_slot": false,
+      "wheelchair_space": false,
+      "companion_seat": false,
+      "extra_time_seconds": 0
+    }
+  },
+  {
+    "event_id": "sce-011",
+    "event_type": "SLOT_CHECKED_IN",
+    "aggregate_type": "queue_slot",
+    "aggregate_id": "slot-4998",
+    "occurred_at": "2026-10-03T16:25:00+08:00",
+    "version": 2,
+    "summary": "前夜散客签到",
+    "slot_id": "slot-4998",
+    "checked_in_at": "2026-10-03T16:25:00+08:00"
+  },
+  {
+    "event_id": "sce-012",
+    "event_type": "SESSION_STARTED",
+    "aggregate_type": "visit_session",
+    "aggregate_id": "sess-6998",
+    "occurred_at": "2026-10-03T16:30:00+08:00",
+    "version": 1,
+    "summary": "规则第4版生效前开始的会话，钉选第3版解释",
+    "session_id": "sess-6998",
+    "slot_id": "slot-4998",
+    "exhibit_id": "exh-weld-vr",
+    "mode_id": "vr_training",
+    "exhibit_version": 1,
+    "pinned_rules": {
+      "competition_id": "comp-welding-2026",
+      "rules_version": 3
+    },
+    "component_assignments": [
+      "c-vr-headset",
+      "c-control-panel-1"
+    ],
+    "accommodations": {
+      "assisted_device": false,
+      "wheelchair_space": false,
+      "companion_seat": false,
+      "extra_time_seconds": 0
+    },
+    "client_event_id": "term-07-start-6998",
+    "client_seq": 1,
+    "client_recorded_at": "2026-10-03T16:30:00+08:00",
+    "server_received_at": "2026-10-03T16:30:02+08:00",
+    "offline_batched": false
+  },
+  {
+    "event_id": "sce-013",
+    "event_type": "SESSION_COMPLETED",
+    "aggregate_type": "visit_session",
+    "aggregate_id": "sess-6998",
+    "occurred_at": "2026-10-03T17:05:00+08:00",
+    "version": 2,
+    "summary": "前夜会话正常完成",
+    "session_id": "sess-6998",
+    "completed_normally": true,
+    "abandonment_reason": null,
+    "client_event_id": "term-07-done-6998",
+    "client_seq": 2,
+    "client_recorded_at": "2026-10-03T17:05:00+08:00",
+    "server_received_at": "2026-10-03T17:05:03+08:00",
+    "offline_batched": false
+  },
+  {
+    "event_id": "sce-014",
+    "event_type": "SESSION_RECORDED",
+    "aggregate_type": "visit_session",
+    "aggregate_id": "sess-6998",
+    "occurred_at": "2026-10-03T17:08:00+08:00",
+    "version": 3,
+    "summary": "落定前夜会话记录，保留第3版规则解释",
+    "session_id": "sess-6998",
+    "exhibit_id": "exh-weld-vr",
+    "exhibit_version": 1,
+    "pinned_rules": {
+      "competition_id": "comp-welding-2026",
+      "rules_version": 3
+    },
+    "started_at": "2026-10-03T16:30:00+08:00",
+    "completed_at": "2026-10-03T17:05:00+08:00",
+    "merged_client_event_ids": [
+      "term-07-start-6998",
+      "term-07-done-6998"
+    ],
+    "timeline": [
+      {
+        "client_event_id": "term-07-start-6998",
+        "client_seq": 1,
+        "phase": "started",
+        "at": "2026-10-03T16:30:00+08:00"
+      },
+      {
+        "client_event_id": "term-07-done-6998",
+        "client_seq": 2,
+        "phase": "completed",
+        "at": "2026-10-03T17:05:00+08:00"
+      }
+    ],
+    "paused_seconds": 0,
+    "effective_duration_seconds": 2100,
+    "analytics_eligible": true,
+    "identifier_scrubbing": {
+      "fields_removed": [
+        "visitor_name",
+        "contact_ref",
+        "face_capture",
+        "member_id"
+      ]
+    },
+    "finalized_at": "2026-10-03T17:08:00+08:00"
+  },
+  {
+    "event_id": "sce-015",
+    "event_type": "LEARNING_FEEDBACK_SUBMITTED",
+    "aggregate_type": "learning_feedback",
+    "aggregate_id": "fb-8799",
+    "occurred_at": "2026-10-03T17:12:00+08:00",
+    "version": 1,
+    "summary": "前夜访客反馈，按其实际体验的规则第3版评分",
+    "feedback_id": "fb-8799",
+    "pseudonymous_ref": "psn-20261003-31c0",
+    "visitor_band": "adult",
+    "age_band": null,
+    "exhibit_id": "exh-weld-vr",
+    "exhibit_version": 1,
+    "mode_id": "vr_training",
+    "based_on_rules": {
+      "competition_id": "comp-welding-2026",
+      "rules_version": 3
+    },
+    "responses": [
+      {
+        "item_id": "q-bead-control",
+        "outcome": "completed",
+        "score": 3
+      },
+      {
+        "item_id": "q-safety-word",
+        "outcome": "completed",
+        "score": 2
+      }
+    ],
+    "deidentified": true,
+    "submitted_at": "2026-10-03T17:12:00+08:00"
+  },
+  {
+    "event_id": "sce-016",
+    "event_type": "CONTENT_EXPIRY_ACKNOWLEDGED",
+    "aggregate_type": "exhibit_version",
+    "aggregate_id": "exh-weld-vr@1",
+    "occurred_at": "2026-10-04T08:30:00+08:00",
+    "version": 3,
+    "summary": "教育专员确认第1版脚本对规则第4版已过期，不再用于新会话",
+    "exhibit_id": "exh-weld-vr",
+    "exhibit_version": 1,
+    "review_status": "outdated_confirmed",
+    "current_rules_version": 4,
+    "acknowledged_by": "staff-edu-chenxue",
+    "acknowledged_at": "2026-10-04T08:30:00+08:00"
+  },
+  {
+    "event_id": "sce-017",
+    "event_type": "EXHIBIT_REGISTERED",
+    "aggregate_type": "exhibit",
+    "aggregate_id": "exh-robot-arm",
+    "occurred_at": "2026-10-04T08:40:00+08:00",
+    "version": 1,
+    "summary": "登记工业机器人互动展项，作为焊接展项故障时的无障碍替代候选",
+    "exhibit_id": "exh-robot-arm",
+    "competition_id": "comp-robotics-2026",
+    "category": "robotics",
+    "components": [
+      {
+        "component_id": "c-robot-arm-a1",
+        "name": "六轴机械臂",
+        "safety_relevant": true
+      },
+      {
+        "component_id": "c-teach-pendant",
+        "name": "示教器",
+        "safety_relevant": false
+      },
+      {
+        "component_id": "c-light-curtain",
+        "name": "安全光幕",
+        "safety_relevant": true
+      }
+    ],
+    "experience_modes": [
+      "guided_demo",
+      "assisted_practice",
+      "vr_training",
+      "low_stimulus_watch"
+    ],
+    "suitability": {
+      "min_age_years": 6,
+      "max_age_years": null,
+      "supervision_required_under": 12
+    },
+    "accessibility": {
+      "wheelchair_accessible": true,
+      "assisted_device_supported": true,
+      "companion_seat": true,
+      "sensory_low_stimulus_mode": true
+    },
+    "base_duration_seconds": 600
+  },
+  {
+    "event_id": "sce-018",
+    "event_type": "WAIT_TIME_PUBLISHED",
+    "aggregate_type": "exhibit",
+    "aggregate_id": "exh-weld-vr",
+    "occurred_at": "2026-10-04T09:00:00+08:00",
+    "version": 3,
+    "summary": "开馆发布讲解场等待时间：约10分钟，基于近30分钟实测吞吐",
+    "exhibit_id": "exh-weld-vr",
+    "mode_id": "guided_demo",
+    "expected_wait_seconds": 600,
+    "basis": "observed_throughput",
+    "observed_sessions": 18,
+    "valid_for_seconds": 300
+  },
+  {
+    "event_id": "sce-019",
+    "event_type": "WAIT_TIME_PUBLISHED",
+    "aggregate_type": "exhibit",
+    "aggregate_id": "exh-weld-vr",
+    "occurred_at": "2026-10-04T09:00:00+08:00",
+    "version": 4,
+    "summary": "发布辅助实操与无障碍通道等待时间：普通8分钟、无障碍通道5分钟",
+    "exhibit_id": "exh-weld-vr",
+    "mode_id": "assisted_practice",
+    "expected_wait_seconds": 480,
+    "accessible_lane_wait_seconds": 300,
+    "basis": "observed_throughput",
+    "observed_sessions": 11,
+    "valid_for_seconds": 300
+  },
+  {
+    "event_id": "sce-020",
+    "event_type": "RESERVATION_REQUESTED",
+    "aggregate_type": "reservation",
+    "aggregate_id": "res-group-1014",
+    "occurred_at": "2026-10-04T09:05:00+08:00",
+    "version": 1,
+    "summary": "小学团体12人预约10点讲解场，含2名随队教师陪同",
+    "reservation_id": "res-group-1014",
+    "exhibit_id": "exh-weld-vr",
+    "mode_id": "guided_demo",
+    "party_type": "group",
+    "party_size": 12,
+    "children_count": 12,
+    "accessibility_needs": [
+      "companion_seat"
+    ],
+    "contact_ref": "contact-token-90af",
+    "requested_slot_at": "2026-10-04T10:00:00+08:00",
+    "joined_queue_at": "2026-10-04T09:05:00+08:00"
+  },
+  {
+    "event_id": "sce-021",
+    "event_type": "RESERVATION_REQUESTED",
+    "aggregate_type": "reservation",
+    "aggregate_id": "res-ind-2047",
+    "occurred_at": "2026-10-04T09:06:00+08:00",
+    "version": 1,
+    "summary": "轮椅散客与陪同人预约辅助实操，需要辅助设备槽位、轮椅位与加时",
+    "reservation_id": "res-ind-2047",
+    "exhibit_id": "exh-weld-vr",
+    "mode_id": "assisted_practice",
+    "party_type": "individual",
+    "party_size": 2,
+    "children_count": 0,
+    "accessibility_needs": [
+      "wheelchair_space",
+      "assisted_device",
+      "companion_seat",
+      "extra_time"
+    ],
+    "contact_ref": "contact-token-22d8",
+    "requested_slot_at": "2026-10-04T10:00:00+08:00",
+    "joined_queue_at": "2026-10-04T09:06:00+08:00"
+  },
+  {
+    "event_id": "sce-022",
+    "event_type": "STANDBY_LIST_JOINED",
+    "aggregate_type": "standby_entry",
+    "aggregate_id": "stb-3309",
+    "occurred_at": "2026-10-04T09:10:00+08:00",
+    "version": 1,
+    "summary": "7岁儿童在家长陪同下现场候补辅助实操，需要加时",
+    "standby_entry_id": "stb-3309",
+    "exhibit_id": "exh-weld-vr",
+    "mode_id": "assisted_practice",
+    "party_size": 1,
+    "children_count": 1,
+    "accessibility_needs": [
+      "extra_time"
+    ],
+    "joined_at": "2026-10-04T09:10:00+08:00",
+    "queue_sequence": 2003
+  },
+  {
+    "event_id": "sce-023",
+    "event_type": "RESERVATION_REQUESTED",
+    "aggregate_type": "reservation",
+    "aggregate_id": "res-ind-2099",
+    "occurred_at": "2026-10-04T09:12:00+08:00",
+    "version": 1,
+    "summary": "散客预约10点辅助实操（后取消）",
+    "reservation_id": "res-ind-2099",
+    "exhibit_id": "exh-weld-vr",
+    "mode_id": "assisted_practice",
+    "party_type": "individual",
+    "party_size": 1,
+    "children_count": 0,
+    "accessibility_needs": [],
+    "contact_ref": "contact-token-57ce",
+    "requested_slot_at": "2026-10-04T10:00:00+08:00",
+    "joined_queue_at": "2026-10-04T09:12:00+08:00"
+  },
+  {
+    "event_id": "sce-024",
+    "event_type": "SLOT_ASSIGNED",
+    "aggregate_type": "queue_slot",
+    "aggregate_id": "slot-5001",
+    "occurred_at": "2026-10-04T09:20:00+08:00",
+    "version": 1,
+    "summary": "团体前6人排入10点讲解场（不超过单时段容量的50%）",
+    "slot_id": "slot-5001",
+    "reservation_id": "res-group-1014",
+    "standby_entry_id": null,
+    "exhibit_id": "exh-weld-vr",
+    "mode_id": "guided_demo",
+    "assigned_from": "reservation",
+    "party_size": 6,
+    "seats_taken": 6,
+    "queue_sequence": 2001,
+    "starts_at": "2026-10-04T10:00:00+08:00",
+    "duration_planned_seconds": 720,
+    "wait_estimate_seconds": 600,
+    "estimate_basis": "observed_throughput",
+    "accessibility_allocations": {
+      "assisted_device_slot": false,
+      "wheelchair_space": false,
+      "companion_seat": true,
+      "extra_time_seconds": 0
+    }
+  },
+  {
+    "event_id": "sce-025",
+    "event_type": "SLOT_ASSIGNED",
+    "aggregate_type": "queue_slot",
+    "aggregate_id": "slot-5002",
+    "occurred_at": "2026-10-04T09:20:00+08:00",
+    "version": 1,
+    "summary": "团体后6人顺延排入10点15分第二场，为散客留出同场容量",
+    "slot_id": "slot-5002",
+    "reservation_id": "res-group-1014",
+    "standby_entry_id": null,
+    "exhibit_id": "exh-weld-vr",
+    "mode_id": "guided_demo",
+    "assigned_from": "reservation",
+    "party_size": 6,
+    "seats_taken": 6,
+    "queue_sequence": 2001,
+    "starts_at": "2026-10-04T10:15:00+08:00",
+    "duration_planned_seconds": 720,
+    "wait_estimate_seconds": 600,
+    "estimate_basis": "observed_throughput",
+    "accessibility_allocations": {
+      "assisted_device_slot": false,
+      "wheelchair_space": false,
+      "companion_seat": true,
+      "extra_time_seconds": 0
+    }
+  },
+  {
+    "event_id": "sce-026",
+    "event_type": "SLOT_ASSIGNED",
+    "aggregate_type": "queue_slot",
+    "aggregate_id": "slot-5003",
+    "occurred_at": "2026-10-04T09:21:00+08:00",
+    "version": 1,
+    "summary": "轮椅访客分配辅助实操：预留辅助设备槽位与轮椅位，计划时长含3分钟加时",
+    "slot_id": "slot-5003",
+    "reservation_id": "res-ind-2047",
+    "standby_entry_id": null,
+    "exhibit_id": "exh-weld-vr",
+    "mode_id": "assisted_practice",
+    "assigned_from": "reservation",
+    "party_size": 2,
+    "seats_taken": 2,
+    "queue_sequence": 2002,
+    "starts_at": "2026-10-04T10:00:00+08:00",
+    "duration_planned_seconds": 780,
+    "wait_estimate_seconds": 480,
+    "estimate_basis": "observed_throughput",
+    "accessibility_allocations": {
+      "assisted_device_slot": true,
+      "wheelchair_space": true,
+      "companion_seat": true,
+      "extra_time_seconds": 180
+    }
+  },
+  {
+    "event_id": "sce-027",
+    "event_type": "SLOT_ASSIGNED",
+    "aggregate_type": "queue_slot",
+    "aggregate_id": "slot-5004",
+    "occurred_at": "2026-10-04T09:21:00+08:00",
+    "version": 1,
+    "summary": "后到散客排入10点辅助实操最后一个普客座席",
+    "slot_id": "slot-5004",
+    "reservation_id": "res-ind-2099",
+    "standby_entry_id": null,
+    "exhibit_id": "exh-weld-vr",
+    "mode_id": "assisted_practice",
+    "assigned_from": "reservation",
+    "party_size": 1,
+    "seats_taken": 1,
+    "queue_sequence": 2004,
+    "starts_at": "2026-10-04T10:00:00+08:00",
+    "duration_planned_seconds": 600,
+    "wait_estimate_seconds": 480,
+    "estimate_basis": "observed_throughput",
+    "accessibility_allocations": {
+      "assisted_device_slot": false,
+      "wheelchair_space": false,
+      "companion_seat": false,
+      "extra_time_seconds": 0
+    }
+  },
+  {
+    "event_id": "sce-028",
+    "event_type": "RESERVATION_CANCELLED",
+    "aggregate_type": "reservation",
+    "aggregate_id": "res-ind-2099",
+    "occurred_at": "2026-10-04T09:38:00+08:00",
+    "version": 2,
+    "summary": "散客取消，释放1个普客座席",
+    "reservation_id": "res-ind-2099",
+    "exhibit_id": "exh-weld-vr",
+    "mode_id": "assisted_practice",
+    "cancelled_at": "2026-10-04T09:38:00+08:00",
+    "reason": "visitor_plan_changed",
+    "released_seats": 1,
+    "released_assisted_device_slots": 0
+  },
+  {
+    "event_id": "sce-029",
+    "event_type": "STANDBY_PROMOTED",
+    "aggregate_type": "standby_entry",
+    "aggregate_id": "stb-3309",
+    "occurred_at": "2026-10-04T09:39:00+08:00",
+    "version": 2,
+    "summary": "取消的座席按候补先后顺序递给09:10入列的儿童",
+    "standby_entry_id": "stb-3309",
+    "slot_id": "slot-5005",
+    "promoted_at": "2026-10-04T09:39:00+08:00"
+  },
+  {
+    "event_id": "sce-030",
+    "event_type": "SLOT_ASSIGNED",
+    "aggregate_type": "queue_slot",
+    "aggregate_id": "slot-5005",
+    "occurred_at": "2026-10-04T09:39:00+08:00",
+    "version": 1,
+    "summary": "候补儿童获得10点辅助实操座席，安排家长陪同位并含加时，候补序号保持2003",
+    "slot_id": "slot-5005",
+    "reservation_id": null,
+    "standby_entry_id": "stb-3309",
+    "exhibit_id": "exh-weld-vr",
+    "mode_id": "assisted_practice",
+    "assigned_from": "standby",
+    "party_size": 1,
+    "seats_taken": 1,
+    "queue_sequence": 2003,
+    "starts_at": "2026-10-04T10:00:00+08:00",
+    "duration_planned_seconds": 780,
+    "wait_estimate_seconds": 1260,
+    "estimate_basis": "observed_throughput",
+    "accessibility_allocations": {
+      "assisted_device_slot": false,
+      "wheelchair_space": false,
+      "companion_seat": true,
+      "extra_time_seconds": 180
+    }
+  },
+  {
+    "event_id": "sce-031",
+    "event_type": "RESERVATION_REQUESTED",
+    "aggregate_type": "reservation",
+    "aggregate_id": "res-ind-2150",
+    "occurred_at": "2026-10-04T09:40:00+08:00",
+    "version": 1,
+    "summary": "故障发生前已预约的10:50 VR训练",
+    "reservation_id": "res-ind-2150",
+    "exhibit_id": "exh-weld-vr",
+    "mode_id": "vr_training",
+    "party_type": "individual",
+    "party_size": 1,
+    "children_count": 0,
+    "accessibility_needs": [],
+    "contact_ref": "contact-token-6ab4",
+    "requested_slot_at": "2026-10-04T10:50:00+08:00",
+    "joined_queue_at": "2026-10-04T09:40:00+08:00"
+  },
+  {
+    "event_id": "sce-032",
+    "event_type": "SLOT_ASSIGNED",
+    "aggregate_type": "queue_slot",
+    "aggregate_id": "slot-5006",
+    "occurred_at": "2026-10-04T09:42:00+08:00",
+    "version": 1,
+    "summary": "为10:50 VR训练分配座席",
+    "slot_id": "slot-5006",
+    "reservation_id": "res-ind-2150",
+    "standby_entry_id": null,
+    "exhibit_id": "exh-weld-vr",
+    "mode_id": "vr_training",
+    "assigned_from": "reservation",
+    "party_size": 1,
+    "seats_taken": 1,
+    "queue_sequence": 2005,
+    "starts_at": "2026-10-04T10:50:00+08:00",
+    "duration_planned_seconds": 480,
+    "wait_estimate_seconds": 600,
+    "estimate_basis": "observed_throughput",
+    "accessibility_allocations": {
+      "assisted_device_slot": false,
+      "wheelchair_space": false,
+      "companion_seat": false,
+      "extra_time_seconds": 0
+    }
+  },
+  {
+    "event_id": "sce-033",
+    "event_type": "SLOT_CHECKED_IN",
+    "aggregate_type": "queue_slot",
+    "aggregate_id": "slot-5001",
+    "occurred_at": "2026-10-04T09:55:00+08:00",
+    "version": 2,
+    "summary": "团体第一批签到",
+    "slot_id": "slot-5001",
+    "checked_in_at": "2026-10-04T09:55:00+08:00"
+  },
+  {
+    "event_id": "sce-034",
+    "event_type": "SLOT_CHECKED_IN",
+    "aggregate_type": "queue_slot",
+    "aggregate_id": "slot-5002",
+    "occurred_at": "2026-10-04T09:56:00+08:00",
+    "version": 2,
+    "summary": "团体第二批签到",
+    "slot_id": "slot-5002",
+    "checked_in_at": "2026-10-04T09:56:00+08:00"
+  },
+  {
+    "event_id": "sce-035",
+    "event_type": "SLOT_CHECKED_IN",
+    "aggregate_type": "queue_slot",
+    "aggregate_id": "slot-5003",
+    "occurred_at": "2026-10-04T09:57:00+08:00",
+    "version": 2,
+    "summary": "轮椅访客签到，工作人员确认辅助设备已就位",
+    "slot_id": "slot-5003",
+    "checked_in_at": "2026-10-04T09:57:00+08:00"
+  },
+  {
+    "event_id": "sce-036",
+    "event_type": "SLOT_CHECKED_IN",
+    "aggregate_type": "queue_slot",
+    "aggregate_id": "slot-5005",
+    "occurred_at": "2026-10-04T09:58:00+08:00",
+    "version": 2,
+    "summary": "候补儿童签到",
+    "slot_id": "slot-5005",
+    "checked_in_at": "2026-10-04T09:58:00+08:00"
+  },
+  {
+    "event_id": "sce-037",
+    "event_type": "SESSION_STARTED",
+    "aggregate_type": "visit_session",
+    "aggregate_id": "sess-7001",
+    "occurred_at": "2026-10-04T10:00:00+08:00",
+    "version": 1,
+    "summary": "团体第一批讲解场开始，使用第2版内容与规则第4版解释",
+    "session_id": "sess-7001",
+    "slot_id": "slot-5001",
+    "exhibit_id": "exh-weld-vr",
+    "mode_id": "guided_demo",
+    "exhibit_version": 2,
+    "pinned_rules": {
+      "competition_id": "comp-welding-2026",
+      "rules_version": 4
+    },
+    "component_assignments": [
+      "c-welder-main",
+      "c-safety-curtain",
+      "c-control-panel-1"
+    ],
+    "accommodations": {
+      "assisted_device": false,
+      "wheelchair_space": false,
+      "companion_seat": true,
+      "extra_time_seconds": 0
+    },
+    "client_event_id": "term-12-start-7001",
+    "client_seq": 1,
+    "client_recorded_at": "2026-10-04T10:00:00+08:00",
+    "server_received_at": "2026-10-04T10:00:01+08:00",
+    "offline_batched": false
+  },
+  {
+    "event_id": "sce-038",
+    "event_type": "SESSION_STARTED",
+    "aggregate_type": "visit_session",
+    "aggregate_id": "sess-7002",
+    "occurred_at": "2026-10-04T10:00:00+08:00",
+    "version": 1,
+    "summary": "轮椅访客辅助实操开始，辅助设备与加时生效",
+    "session_id": "sess-7002",
+    "slot_id": "slot-5003",
+    "exhibit_id": "exh-weld-vr",
+    "mode_id": "assisted_practice",
+    "exhibit_version": 2,
+    "pinned_rules": {
+      "competition_id": "comp-welding-2026",
+      "rules_version": 4
+    },
+    "component_assignments": [
+      "c-welder-main",
+      "c-fume-extractor",
+      "c-control-panel-1"
+    ],
+    "accommodations": {
+      "assisted_device": true,
+      "wheelchair_space": true,
+      "companion_seat": true,
+      "extra_time_seconds": 180
+    },
+    "client_event_id": "term-12-start-7002",
+    "client_seq": 1,
+    "client_recorded_at": "2026-10-04T10:00:00+08:00",
+    "server_received_at": "2026-10-04T10:00:01+08:00",
+    "offline_batched": false
+  },
+  {
+    "event_id": "sce-039",
+    "event_type": "SESSION_STARTED",
+    "aggregate_type": "visit_session",
+    "aggregate_id": "sess-7003",
+    "occurred_at": "2026-10-04T10:00:00+08:00",
+    "version": 1,
+    "summary": "候补儿童在离线终端开始辅助实操，家长陪同，消息暂存本机",
+    "session_id": "sess-7003",
+    "slot_id": "slot-5005",
+    "exhibit_id": "exh-weld-vr",
+    "mode_id": "assisted_practice",
+    "exhibit_version": 2,
+    "pinned_rules": {
+      "competition_id": "comp-welding-2026",
+      "rules_version": 4
+    },
+    "component_assignments": [
+      "c-welder-main",
+      "c-fume-extractor",
+      "c-control-panel-2"
+    ],
+    "accommodations": {
+      "assisted_device": false,
+      "wheelchair_space": false,
+      "companion_seat": true,
+      "extra_time_seconds": 180
+    },
+    "client_event_id": "term-19-start-7003",
+    "client_seq": 1,
+    "client_recorded_at": "2026-10-04T10:00:00+08:00",
+    "server_received_at": "2026-10-04T10:23:10+08:00",
+    "offline_batched": true
+  },
+  {
+    "event_id": "sce-040",
+    "event_type": "SESSION_PAUSED",
+    "aggregate_type": "visit_session",
+    "aggregate_id": "sess-7003",
+    "occurred_at": "2026-10-04T10:05:00+08:00",
+    "version": 2,
+    "summary": "终端短暂故障，儿童会话暂停（离线暂存）",
+    "session_id": "sess-7003",
+    "reason": "equipment",
+    "client_event_id": "term-19-pause-7003",
+    "client_seq": 2,
+    "client_recorded_at": "2026-10-04T10:05:00+08:00",
+    "server_received_at": "2026-10-04T10:23:10+08:00",
+    "offline_batched": true
+  },
+  {
+    "event_id": "sce-041",
+    "event_type": "SESSION_RESUMED",
+    "aggregate_type": "visit_session",
+    "aggregate_id": "sess-7003",
+    "occurred_at": "2026-10-04T10:09:00+08:00",
+    "version": 3,
+    "summary": "终端恢复，会话继续（离线暂存）",
+    "session_id": "sess-7003",
+    "client_event_id": "term-19-resume-7003",
+    "client_seq": 3,
+    "client_recorded_at": "2026-10-04T10:09:00+08:00",
+    "server_received_at": "2026-10-04T10:23:10+08:00",
+    "offline_batched": true
+  },
+  {
+    "event_id": "sce-042",
+    "event_type": "SESSION_COMPLETED",
+    "aggregate_type": "visit_session",
+    "aggregate_id": "sess-7001",
+    "occurred_at": "2026-10-04T10:12:00+08:00",
+    "version": 2,
+    "summary": "团体讲解场正常完成",
+    "session_id": "sess-7001",
+    "completed_normally": true,
+    "abandonment_reason": null,
+    "client_event_id": "term-12-done-7001",
+    "client_seq": 2,
+    "client_recorded_at": "2026-10-04T10:12:00+08:00",
+    "server_received_at": "2026-10-04T10:12:02+08:00",
+    "offline_batched": false
+  },
+  {
+    "event_id": "sce-043",
+    "event_type": "SESSION_RECORDED",
+    "aggregate_type": "visit_session",
+    "aggregate_id": "sess-7001",
+    "occurred_at": "2026-10-04T10:13:00+08:00",
+    "version": 3,
+    "summary": "落定团体讲解场记录（儿童团体轨迹已去除可识别字段）",
+    "session_id": "sess-7001",
+    "exhibit_id": "exh-weld-vr",
+    "exhibit_version": 2,
+    "pinned_rules": {
+      "competition_id": "comp-welding-2026",
+      "rules_version": 4
+    },
+    "started_at": "2026-10-04T10:00:00+08:00",
+    "completed_at": "2026-10-04T10:12:00+08:00",
+    "merged_client_event_ids": [
+      "term-12-start-7001",
+      "term-12-done-7001"
+    ],
+    "timeline": [
+      {
+        "client_event_id": "term-12-start-7001",
+        "client_seq": 1,
+        "phase": "started",
+        "at": "2026-10-04T10:00:00+08:00"
+      },
+      {
+        "client_event_id": "term-12-done-7001",
+        "client_seq": 2,
+        "phase": "completed",
+        "at": "2026-10-04T10:12:00+08:00"
+      }
+    ],
+    "paused_seconds": 0,
+    "effective_duration_seconds": 720,
+    "analytics_eligible": true,
+    "identifier_scrubbing": {
+      "fields_removed": [
+        "visitor_name",
+        "contact_ref",
+        "face_capture",
+        "member_id",
+        "school_name"
+      ]
+    },
+    "finalized_at": "2026-10-04T10:13:00+08:00"
+  },
+  {
+    "event_id": "sce-044",
+    "event_type": "SESSION_COMPLETED",
+    "aggregate_type": "visit_session",
+    "aggregate_id": "sess-7002",
+    "occurred_at": "2026-10-04T10:13:00+08:00",
+    "version": 2,
+    "summary": "轮椅访客用完加时后正常完成",
+    "session_id": "sess-7002",
+    "completed_normally": true,
+    "abandonment_reason": null,
+    "client_event_id": "term-12-done-7002",
+    "client_seq": 2,
+    "client_recorded_at": "2026-10-04T10:13:00+08:00",
+    "server_received_at": "2026-10-04T10:13:02+08:00",
+    "offline_batched": false
+  },
+  {
+    "event_id": "sce-045",
+    "event_type": "SESSION_RECORDED",
+    "aggregate_type": "visit_session",
+    "aggregate_id": "sess-7002",
+    "occurred_at": "2026-10-04T10:14:00+08:00",
+    "version": 3,
+    "summary": "落定轮椅访客记录，有效时长780秒含加时，不按平均时长截断",
+    "session_id": "sess-7002",
+    "exhibit_id": "exh-weld-vr",
+    "exhibit_version": 2,
+    "pinned_rules": {
+      "competition_id": "comp-welding-2026",
+      "rules_version": 4
+    },
+    "started_at": "2026-10-04T10:00:00+08:00",
+    "completed_at": "2026-10-04T10:13:00+08:00",
+    "merged_client_event_ids": [
+      "term-12-start-7002",
+      "term-12-done-7002"
+    ],
+    "timeline": [
+      {
+        "client_event_id": "term-12-start-7002",
+        "client_seq": 1,
+        "phase": "started",
+        "at": "2026-10-04T10:00:00+08:00"
+      },
+      {
+        "client_event_id": "term-12-done-7002",
+        "client_seq": 2,
+        "phase": "completed",
+        "at": "2026-10-04T10:13:00+08:00"
+      }
+    ],
+    "paused_seconds": 0,
+    "effective_duration_seconds": 780,
+    "analytics_eligible": true,
+    "identifier_scrubbing": {
+      "fields_removed": [
+        "visitor_name",
+        "contact_ref",
+        "face_capture",
+        "member_id"
+      ]
+    },
+    "finalized_at": "2026-10-04T10:14:00+08:00"
+  },
+  {
+    "event_id": "sce-046",
+    "event_type": "SESSION_COMPLETED",
+    "aggregate_type": "visit_session",
+    "aggregate_id": "sess-7003",
+    "occurred_at": "2026-10-04T10:18:00+08:00",
+    "version": 4,
+    "summary": "儿童会话正常完成（离线暂存，重连后随批次上传）",
+    "session_id": "sess-7003",
+    "completed_normally": true,
+    "abandonment_reason": null,
+    "client_event_id": "term-19-done-7003",
+    "client_seq": 4,
+    "client_recorded_at": "2026-10-04T10:18:00+08:00",
+    "server_received_at": "2026-10-04T10:23:10+08:00",
+    "offline_batched": true
+  },
+  {
+    "event_id": "sce-047",
+    "event_type": "LEARNING_FEEDBACK_SUBMITTED",
+    "aggregate_type": "learning_feedback",
+    "aggregate_id": "fb-8802",
+    "occurred_at": "2026-10-04T10:20:00+08:00",
+    "version": 1,
+    "summary": "轮椅访客提交辅助实操学习反馈",
+    "feedback_id": "fb-8802",
+    "pseudonymous_ref": "psn-20261004-8bd2",
+    "visitor_band": "adult",
+    "age_band": null,
+    "exhibit_id": "exh-weld-vr",
+    "exhibit_version": 2,
+    "mode_id": "assisted_practice",
+    "based_on_rules": {
+      "competition_id": "comp-welding-2026",
+      "rules_version": 4
+    },
+    "responses": [
+      {
+        "item_id": "q-bead-control",
+        "outcome": "completed",
+        "score": 3
+      },
+      {
+        "item_id": "q-twin-check",
+        "outcome": "completed",
+        "score": 3
+      },
+      {
+        "item_id": "q-angle-tolerance",
+        "outcome": "partial",
+        "score": 2
+      }
+    ],
+    "deidentified": true,
+    "submitted_at": "2026-10-04T10:20:00+08:00"
+  },
+  {
+    "event_id": "sce-048",
+    "event_type": "SESSION_RECORDED",
+    "aggregate_type": "visit_session",
+    "aggregate_id": "sess-7003",
+    "occurred_at": "2026-10-04T10:24:00+08:00",
+    "version": 5,
+    "summary": "重连后按终端序号归并四条离线消息，扣暂停4分钟，有效时长840秒",
+    "session_id": "sess-7003",
+    "exhibit_id": "exh-weld-vr",
+    "exhibit_version": 2,
+    "pinned_rules": {
+      "competition_id": "comp-welding-2026",
+      "rules_version": 4
+    },
+    "started_at": "2026-10-04T10:00:00+08:00",
+    "completed_at": "2026-10-04T10:18:00+08:00",
+    "merged_client_event_ids": [
+      "term-19-start-7003",
+      "term-19-pause-7003",
+      "term-19-resume-7003",
+      "term-19-done-7003"
+    ],
+    "timeline": [
+      {
+        "client_event_id": "term-19-start-7003",
+        "client_seq": 1,
+        "phase": "started",
+        "at": "2026-10-04T10:00:00+08:00"
+      },
+      {
+        "client_event_id": "term-19-pause-7003",
+        "client_seq": 2,
+        "phase": "paused",
+        "at": "2026-10-04T10:05:00+08:00"
+      },
+      {
+        "client_event_id": "term-19-resume-7003",
+        "client_seq": 3,
+        "phase": "resumed",
+        "at": "2026-10-04T10:09:00+08:00"
+      },
+      {
+        "client_event_id": "term-19-done-7003",
+        "client_seq": 4,
+        "phase": "completed",
+        "at": "2026-10-04T10:18:00+08:00"
+      }
+    ],
+    "paused_seconds": 240,
+    "effective_duration_seconds": 840,
+    "analytics_eligible": true,
+    "identifier_scrubbing": {
+      "fields_removed": [
+        "visitor_name",
+        "contact_ref",
+        "face_capture",
+        "member_id",
+        "guardian_contact"
+      ]
+    },
+    "finalized_at": "2026-10-04T10:24:00+08:00"
+  },
+  {
+    "event_id": "sce-049",
+    "event_type": "LEARNING_FEEDBACK_SUBMITTED",
+    "aggregate_type": "learning_feedback",
+    "aggregate_id": "fb-8801",
+    "occurred_at": "2026-10-04T10:26:00+08:00",
+    "version": 1,
+    "summary": "7岁儿童提交反馈：仅记录年龄段与轮换假名，无任何可识别信息",
+    "feedback_id": "fb-8801",
+    "pseudonymous_ref": "psn-20261004-child-a19f",
+    "visitor_band": "child",
+    "age_band": "6-9",
+    "exhibit_id": "exh-weld-vr",
+    "exhibit_version": 2,
+    "mode_id": "assisted_practice",
+    "based_on_rules": {
+      "competition_id": "comp-welding-2026",
+      "rules_version": 4
+    },
+    "responses": [
+      {
+        "item_id": "q-ppe-touch",
+        "outcome": "completed",
+        "score": 3
+      },
+      {
+        "item_id": "q-bead-control",
+        "outcome": "partial",
+        "score": 1
+      }
+    ],
+    "deidentified": true,
+    "submitted_at": "2026-10-04T10:26:00+08:00"
+  },
+  {
+    "event_id": "sce-050",
+    "event_type": "WAIT_TIME_PUBLISHED",
+    "aggregate_type": "exhibit",
+    "aggregate_id": "exh-weld-vr",
+    "occurred_at": "2026-10-04T10:30:00+08:00",
+    "version": 5,
+    "summary": "峰时刷新辅助实操等待时间为14分钟",
+    "exhibit_id": "exh-weld-vr",
+    "mode_id": "assisted_practice",
+    "expected_wait_seconds": 840,
+    "accessible_lane_wait_seconds": 420,
+    "basis": "observed_throughput",
+    "observed_sessions": 16,
+    "valid_for_seconds": 300
+  },
+  {
+    "event_id": "sce-051",
+    "event_type": "FAULT_REPORTED",
+    "aggregate_type": "fault",
+    "aggregate_id": "f-7781",
+    "occurred_at": "2026-10-04T10:40:00+08:00",
+    "version": 1,
+    "summary": "终端上报烟尘净化单元过流E-417，仅关闭该组件与辅助实操模式",
+    "fault_id": "f-7781",
+    "exhibit_id": "exh-weld-vr",
+    "fault_code": "E-417",
+    "severity": "high",
+    "affected_components": [
+      "c-fume-extractor"
+    ],
+    "affected_modes": [
+      "assisted_practice"
+    ],
+    "detected_by": "terminal",
+    "detected_at": "2026-10-04T10:40:00+08:00",
+    "description": "烟尘净化单元电流超限停机，讲解场、VR训练与低刺激观摩继续开放",
+    "requires_safety_check": true
+  },
+  {
+    "event_id": "sce-052",
+    "event_type": "STANDBY_LIST_JOINED",
+    "aggregate_type": "standby_entry",
+    "aggregate_id": "stb-3411",
+    "occurred_at": "2026-10-04T10:41:00+08:00",
+    "version": 1,
+    "summary": "故障关闭辅助实操后，轮椅访客登记候补等待重开通知",
+    "standby_entry_id": "stb-3411",
+    "exhibit_id": "exh-weld-vr",
+    "mode_id": "assisted_practice",
+    "party_size": 1,
+    "children_count": 0,
+    "accessibility_needs": [
+      "wheelchair_space",
+      "assisted_device"
+    ],
+    "joined_at": "2026-10-04T10:41:00+08:00",
+    "queue_sequence": 2006
+  },
+  {
+    "event_id": "sce-053",
+    "event_type": "MAINTENANCE_ORDER_OPENED",
+    "aggregate_type": "maintenance_order",
+    "aggregate_id": "mo-9012",
+    "occurred_at": "2026-10-04T10:42:00+08:00",
+    "version": 1,
+    "summary": "就E-417开工单，范围限定烟尘净化单元与辅助实操，修复后须安全检查",
+    "order_id": "mo-9012",
+    "fault_id": "f-7781",
+    "exhibit_id": "exh-weld-vr",
+    "scope_components": [
+      "c-fume-extractor"
+    ],
+    "scope_modes": [
+      "assisted_practice"
+    ],
+    "opened_at": "2026-10-04T10:42:00+08:00",
+    "assigned_team": "team-mech-a",
+    "safety_check_required": true,
+    "required_actions": [
+      "检查风机叶轮积尘",
+      "更换过载保护模块",
+      "实测风量与联锁"
+    ]
+  },
+  {
+    "event_id": "sce-054",
+    "event_type": "MAINTENANCE_PROGRESS_LOGGED",
+    "aggregate_type": "maintenance_order",
+    "aggregate_id": "mo-9012",
+    "occurred_at": "2026-10-04T10:45:00+08:00",
+    "version": 2,
+    "summary": "诊断中：联锁保护动作正常，等待备件",
+    "order_id": "mo-9012",
+    "status": "parts_waiting",
+    "note": "过载保护模块备件已从库房调出",
+    "logged_at": "2026-10-04T10:45:00+08:00"
+  },
+  {
+    "event_id": "sce-055",
+    "event_type": "STANDBY_EXPIRED",
+    "aggregate_type": "standby_entry",
+    "aggregate_id": "stb-3411",
+    "occurred_at": "2026-10-04T10:46:00+08:00",
+    "version": 2,
+    "summary": "候补5分钟模式仍未恢复，前台确认改荐低刺激观摩与机器人展项",
+    "standby_entry_id": "stb-3411",
+    "expired_at": "2026-10-04T10:46:00+08:00",
+    "reason": "mode_unavailable_alternative_offered"
+  },
+  {
+    "event_id": "sce-056",
+    "event_type": "SLOT_CHECKED_IN",
+    "aggregate_type": "queue_slot",
+    "aggregate_id": "slot-5006",
+    "occurred_at": "2026-10-04T10:47:00+08:00",
+    "version": 2,
+    "summary": "辅助实操因烟尘故障关闭期间，VR训练访客照常签到入场",
+    "slot_id": "slot-5006",
+    "checked_in_at": "2026-10-04T10:47:00+08:00"
+  },
+  {
+    "event_id": "sce-057",
+    "event_type": "SESSION_STARTED",
+    "aggregate_type": "visit_session",
+    "aggregate_id": "sess-7004",
+    "occurred_at": "2026-10-04T10:50:00+08:00",
+    "version": 1,
+    "summary": "故障窗口内VR训练模式照常开放，使用未受影响组件",
+    "session_id": "sess-7004",
+    "slot_id": "slot-5006",
+    "exhibit_id": "exh-weld-vr",
+    "mode_id": "vr_training",
+    "exhibit_version": 2,
+    "pinned_rules": {
+      "competition_id": "comp-welding-2026",
+      "rules_version": 4
+    },
+    "component_assignments": [
+      "c-vr-headset",
+      "c-control-panel-1"
+    ],
+    "accommodations": {
+      "assisted_device": false,
+      "wheelchair_space": false,
+      "companion_seat": false,
+      "extra_time_seconds": 0
+    },
+    "client_event_id": "term-31-start-7004",
+    "client_seq": 1,
+    "client_recorded_at": "2026-10-04T10:50:00+08:00",
+    "server_received_at": "2026-10-04T10:50:02+08:00",
+    "offline_batched": false
+  },
+  {
+    "event_id": "sce-058",
+    "event_type": "FAULT_REPORTED",
+    "aggregate_type": "fault",
+    "aggregate_id": "f-7792",
+    "occurred_at": "2026-10-04T10:52:00+08:00",
+    "version": 1,
+    "summary": "观摩区副面板按键失灵，仅关闭该面板与低刺激观摩模式",
+    "fault_id": "f-7792",
+    "exhibit_id": "exh-weld-vr",
+    "fault_code": "E-208",
+    "severity": "low",
+    "affected_components": [
+      "c-control-panel-2"
+    ],
+    "affected_modes": [
+      "low_stimulus_watch"
+    ],
+    "detected_by": "manual",
+    "detected_at": "2026-10-04T10:52:00+08:00",
+    "description": "副面板确认键无响应，不涉及安全联锁",
+    "requires_safety_check": false
+  },
+  {
+    "event_id": "sce-059",
+    "event_type": "MAINTENANCE_ORDER_OPENED",
+    "aggregate_type": "maintenance_order",
+    "aggregate_id": "mo-9013",
+    "occurred_at": "2026-10-04T10:55:00+08:00",
+    "version": 1,
+    "summary": "副面板按键工单，无需安全检查",
+    "order_id": "mo-9013",
+    "fault_id": "f-7792",
+    "exhibit_id": "exh-weld-vr",
+    "scope_components": [
+      "c-control-panel-2"
+    ],
+    "scope_modes": [
+      "low_stimulus_watch"
+    ],
+    "opened_at": "2026-10-04T10:55:00+08:00",
+    "assigned_team": "team-av-b",
+    "safety_check_required": false,
+    "required_actions": [
+      "更换按键模组"
+    ]
+  },
+  {
+    "event_id": "sce-060",
+    "event_type": "SESSION_COMPLETED",
+    "aggregate_type": "visit_session",
+    "aggregate_id": "sess-7004",
+    "occurred_at": "2026-10-04T10:58:00+08:00",
+    "version": 2,
+    "summary": "VR训练正常完成（此时辅助实操仍在维修中）",
+    "session_id": "sess-7004",
+    "completed_normally": true,
+    "abandonment_reason": null,
+    "client_event_id": "term-31-done-7004",
+    "client_seq": 2,
+    "client_recorded_at": "2026-10-04T10:58:00+08:00",
+    "server_received_at": "2026-10-04T10:58:02+08:00",
+    "offline_batched": false
+  },
+  {
+    "event_id": "sce-061",
+    "event_type": "SESSION_RECORDED",
+    "aggregate_type": "visit_session",
+    "aggregate_id": "sess-7004",
+    "occurred_at": "2026-10-04T10:59:00+08:00",
+    "version": 3,
+    "summary": "落定故障窗口内的VR训练记录",
+    "session_id": "sess-7004",
+    "exhibit_id": "exh-weld-vr",
+    "exhibit_version": 2,
+    "pinned_rules": {
+      "competition_id": "comp-welding-2026",
+      "rules_version": 4
+    },
+    "started_at": "2026-10-04T10:50:00+08:00",
+    "completed_at": "2026-10-04T10:58:00+08:00",
+    "merged_client_event_ids": [
+      "term-31-start-7004",
+      "term-31-done-7004"
+    ],
+    "timeline": [
+      {
+        "client_event_id": "term-31-start-7004",
+        "client_seq": 1,
+        "phase": "started",
+        "at": "2026-10-04T10:50:00+08:00"
+      },
+      {
+        "client_event_id": "term-31-done-7004",
+        "client_seq": 2,
+        "phase": "completed",
+        "at": "2026-10-04T10:58:00+08:00"
+      }
+    ],
+    "paused_seconds": 0,
+    "effective_duration_seconds": 480,
+    "analytics_eligible": true,
+    "identifier_scrubbing": {
+      "fields_removed": [
+        "visitor_name",
+        "contact_ref",
+        "face_capture",
+        "member_id"
+      ]
+    },
+    "finalized_at": "2026-10-04T10:59:00+08:00"
+  },
+  {
+    "event_id": "sce-062",
+    "event_type": "MAINTENANCE_PROGRESS_LOGGED",
+    "aggregate_type": "maintenance_order",
+    "aggregate_id": "mo-9012",
+    "occurred_at": "2026-10-04T11:05:00+08:00",
+    "version": 3,
+    "summary": "备件到位开始维修",
+    "order_id": "mo-9012",
+    "status": "repairing",
+    "note": "更换过载保护模块并清理叶轮",
+    "logged_at": "2026-10-04T11:05:00+08:00"
+  },
+  {
+    "event_id": "sce-063",
+    "event_type": "MAINTENANCE_ORDER_RESOLVED",
+    "aggregate_type": "maintenance_order",
+    "aggregate_id": "mo-9013",
+    "occurred_at": "2026-10-04T11:10:00+08:00",
+    "version": 2,
+    "summary": "副面板修复完成，无未决组件，无需安全检查",
+    "order_id": "mo-9013",
+    "repaired_components": [
+      "c-control-panel-2"
+    ],
+    "unresolved_components": [],
+    "resolved_at": "2026-10-04T11:10:00+08:00",
+    "technician_id": "tech-lin",
+    "safety_check_required": false
+  },
+  {
+    "event_id": "sce-064",
+    "event_type": "EXHIBIT_RELEASED",
+    "aggregate_type": "exhibit",
+    "aggregate_id": "exh-weld-vr",
+    "occurred_at": "2026-10-04T11:14:00+08:00",
+    "version": 6,
+    "summary": "副面板修复后直接放行低刺激观摩；辅助实操仍关闭",
+    "exhibit_id": "exh-weld-vr",
+    "order_id": "mo-9013",
+    "released_components": [
+      "c-control-panel-2"
+    ],
+    "released_modes": [
+      "low_stimulus_watch"
+    ],
+    "released_at": "2026-10-04T11:14:00+08:00",
+    "released_by": "staff-ops-zhao"
+  },
+  {
+    "event_id": "sce-065",
+    "event_type": "MAINTENANCE_ORDER_RESOLVED",
+    "aggregate_type": "maintenance_order",
+    "aggregate_id": "mo-9012",
+    "occurred_at": "2026-10-04T11:25:00+08:00",
+    "version": 4,
+    "summary": "烟尘净化单元修复，但须安全检查通过后才可放行",
+    "order_id": "mo-9012",
+    "repaired_components": [
+      "c-fume-extractor"
+    ],
+    "unresolved_components": [],
+    "resolved_at": "2026-10-04T11:25:00+08:00",
+    "technician_id": "tech-wang",
+    "safety_check_required": true
+  },
+  {
+    "event_id": "sce-066",
+    "event_type": "SAFETY_CHECK_PASSED",
+    "aggregate_type": "maintenance_order",
+    "aggregate_id": "mo-9012",
+    "occurred_at": "2026-10-04T11:40:00+08:00",
+    "version": 5,
+    "summary": "按2026第3版检查表完成风量、联锁与双人复核，安全检查通过",
+    "order_id": "mo-9012",
+    "checked_components": [
+      "c-fume-extractor",
+      "c-welder-main",
+      "c-safety-curtain"
+    ],
+    "cleared_modes": [
+      "assisted_practice"
+    ],
+    "checklist_version": "sc-2026-03",
+    "checked_by": "safety-officer-gao",
+    "passed_at": "2026-10-04T11:40:00+08:00",
+    "findings": "风量达标，焊枪联锁与遮光帘联动正常"
+  },
+  {
+    "event_id": "sce-067",
+    "event_type": "EXHIBIT_RELEASED",
+    "aggregate_type": "exhibit",
+    "aggregate_id": "exh-weld-vr",
+    "occurred_at": "2026-10-04T11:45:00+08:00",
+    "version": 7,
+    "summary": "安全检查通过后放行烟尘净化单元与辅助实操",
+    "exhibit_id": "exh-weld-vr",
+    "order_id": "mo-9012",
+    "released_components": [
+      "c-fume-extractor"
+    ],
+    "released_modes": [
+      "assisted_practice"
+    ],
+    "released_at": "2026-10-04T11:45:00+08:00",
+    "released_by": "staff-ops-zhao"
+  },
+  {
+    "event_id": "sce-068",
+    "event_type": "WAIT_TIME_PUBLISHED",
+    "aggregate_type": "exhibit",
+    "aggregate_id": "exh-weld-vr",
+    "occurred_at": "2026-10-04T11:46:00+08:00",
+    "version": 8,
+    "summary": "恢复开放后实测样本不足，改按队列位置发布等待时间并标注口径",
+    "exhibit_id": "exh-weld-vr",
+    "mode_id": "assisted_practice",
+    "expected_wait_seconds": 540,
+    "accessible_lane_wait_seconds": 360,
+    "basis": "queue_position",
+    "valid_for_seconds": 300
+  }
+]

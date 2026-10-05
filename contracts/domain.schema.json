@@ -1,6 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "技能展项运行台领域事件",
+  "description": "互动展项服务的事件信封与各事件负载约定。事件一经接收，event_id、occurred_at、version 不得原地改写，更正只能追加后继事件。",
   "type": "object",
   "required": [
     "event_id",
@@ -19,20 +20,48 @@
     "event_type": {
       "type": "string",
       "enum": [
+        "COMPETITION_RULES_PUBLISHED",
+        "EXHIBIT_REGISTERED",
+        "EXHIBIT_VERSION_PUBLISHED",
         "CONTENT_APPROVED",
+        "CONTENT_EXPIRY_ACKNOWLEDGED",
+        "CAPACITY_PLAN_SET",
+        "WAIT_TIME_PUBLISHED",
+        "RESERVATION_REQUESTED",
         "SLOT_ASSIGNED",
-        "SESSION_RECORDED",
+        "RESERVATION_CANCELLED",
+        "STANDBY_LIST_JOINED",
+        "STANDBY_PROMOTED",
+        "STANDBY_EXPIRED",
+        "SLOT_CHECKED_IN",
+        "SLOT_NO_SHOW",
         "FAULT_REPORTED",
-        "EXHIBIT_RELEASED"
+        "MAINTENANCE_ORDER_OPENED",
+        "MAINTENANCE_PROGRESS_LOGGED",
+        "MAINTENANCE_ORDER_RESOLVED",
+        "SAFETY_CHECK_PASSED",
+        "EXHIBIT_RELEASED",
+        "SESSION_STARTED",
+        "SESSION_PAUSED",
+        "SESSION_RESUMED",
+        "SESSION_COMPLETED",
+        "SESSION_RECORDED",
+        "LEARNING_FEEDBACK_SUBMITTED"
       ]
     },
     "aggregate_type": {
       "type": "string",
       "enum": [
+        "competition",
+        "exhibit",
         "exhibit_version",
-        "visit_session",
+        "fault",
+        "maintenance_order",
+        "reservation",
         "queue_slot",
-        "maintenance_order"
+        "standby_entry",
+        "visit_session",
+        "learning_feedback"
       ]
     },
     "aggregate_id": {
@@ -52,5 +81,593 @@
       "minLength": 1
     }
   },
-  "additionalProperties": true
+  "additionalProperties": true,
+  "definitions": {
+    "suitability": {
+      "type": "object",
+      "required": ["min_age_years", "supervision_required_under"],
+      "properties": {
+        "min_age_years": { "type": "integer", "minimum": 0 },
+        "max_age_years": { "type": ["integer", "null"] },
+        "supervision_required_under": { "type": "integer", "minimum": 0 }
+      },
+      "additionalProperties": true
+    },
+    "accessibility": {
+      "type": "object",
+      "properties": {
+        "wheelchair_accessible": { "type": "boolean" },
+        "assisted_device_supported": { "type": "boolean" },
+        "companion_seat": { "type": "boolean" },
+        "sensory_low_stimulus_mode": { "type": "boolean" }
+      },
+      "additionalProperties": true
+    },
+    "rules_ref": {
+      "type": "object",
+      "required": ["competition_id", "rules_version"],
+      "properties": {
+        "competition_id": { "type": "string", "minLength": 1 },
+        "rules_version": { "type": "integer", "minimum": 1 }
+      },
+      "additionalProperties": false
+    }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "event_type": { "const": "COMPETITION_RULES_PUBLISHED" } }, "required": ["event_type"] },
+      "then": {
+        "properties": {
+          "aggregate_type": { "const": "competition" },
+          "competition_id": { "type": "string", "minLength": 1 },
+          "rules_version": { "type": "integer", "minimum": 1 },
+          "title": { "type": "string" },
+          "effective_at": { "type": "string", "format": "date-time" },
+          "change_summary": { "type": "array", "items": { "type": "string" } }
+        },
+        "required": ["competition_id", "rules_version", "effective_at"]
+      }
+    },
+    {
+      "if": { "properties": { "event_type": { "const": "EXHIBIT_REGISTERED" } }, "required": ["event_type"] },
+      "then": {
+        "properties": {
+          "aggregate_type": { "const": "exhibit" },
+          "exhibit_id": { "type": "string", "minLength": 1 },
+          "competition_id": { "type": "string", "minLength": 1 },
+          "category": { "type": "string", "enum": ["welding", "robotics", "traditional_craft"] },
+          "components": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["component_id", "name", "safety_relevant"],
+              "properties": {
+                "component_id": { "type": "string" },
+                "name": { "type": "string" },
+                "safety_relevant": { "type": "boolean" }
+              },
+              "additionalProperties": true
+            }
+          },
+          "experience_modes": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+          "suitability": { "$ref": "#/definitions/suitability" },
+          "accessibility": { "$ref": "#/definitions/accessibility" },
+          "base_duration_seconds": { "type": "integer", "minimum": 1 }
+        },
+        "required": ["exhibit_id", "competition_id", "category", "components", "experience_modes", "suitability", "accessibility", "base_duration_seconds"]
+      }
+    },
+    {
+      "if": { "properties": { "event_type": { "const": "EXHIBIT_VERSION_PUBLISHED" } }, "required": ["event_type"] },
+      "then": {
+        "properties": {
+          "aggregate_type": { "const": "exhibit_version" },
+          "exhibit_id": { "type": "string", "minLength": 1 },
+          "exhibit_version": { "type": "integer", "minimum": 1 },
+          "based_on_rules": { "$ref": "#/definitions/rules_ref" },
+          "replaces_version": { "type": ["integer", "null"] },
+          "published_at": { "type": "string", "format": "date-time" },
+          "contents": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["content_id", "kind", "title"],
+              "properties": {
+                "content_id": { "type": "string" },
+                "kind": { "type": "string", "enum": ["guide_script", "experience_script", "label", "media"] },
+                "title": { "type": "string" }
+              },
+              "additionalProperties": true
+            }
+          },
+          "mode_durations_seconds": { "type": "object", "additionalProperties": { "type": "integer", "minimum": 1 } },
+          "suitability": { "$ref": "#/definitions/suitability" },
+          "accessibility": { "$ref": "#/definitions/accessibility" }
+        },
+        "required": ["exhibit_id", "exhibit_version", "based_on_rules", "published_at", "contents", "mode_durations_seconds"]
+      }
+    },
+    {
+      "if": { "properties": { "event_type": { "const": "CONTENT_APPROVED" } }, "required": ["event_type"] },
+      "then": {
+        "properties": {
+          "aggregate_type": { "const": "exhibit_version" },
+          "exhibit_id": { "type": "string", "minLength": 1 },
+          "exhibit_version": { "type": "integer", "minimum": 1 },
+          "content_id": { "type": ["string", "null"] },
+          "scope_all": { "type": "boolean" },
+          "decision": { "type": "string", "enum": ["approved", "rejected", "changes_requested"] },
+          "reviewer_id": { "type": "string" },
+          "reviewed_at": { "type": "string", "format": "date-time" },
+          "based_on_rules": { "$ref": "#/definitions/rules_ref" }
+        },
+        "required": ["exhibit_id", "exhibit_version", "decision", "reviewer_id", "reviewed_at", "based_on_rules"]
+      }
+    },
+    {
+      "if": { "properties": { "event_type": { "const": "CONTENT_EXPIRY_ACKNOWLEDGED" } }, "required": ["event_type"] },
+      "then": {
+        "properties": {
+          "aggregate_type": { "const": "exhibit_version" },
+          "exhibit_id": { "type": "string", "minLength": 1 },
+          "exhibit_version": { "type": "integer", "minimum": 1 },
+          "review_status": { "type": "string", "enum": ["current", "outdated_pending_update", "outdated_confirmed", "revalidated"] },
+          "current_rules_version": { "type": "integer", "minimum": 1 },
+          "acknowledged_by": { "type": "string" },
+          "acknowledged_at": { "type": "string", "format": "date-time" }
+        },
+        "required": ["exhibit_id", "exhibit_version", "review_status", "current_rules_version", "acknowledged_by", "acknowledged_at"]
+      }
+    },
+    {
+      "if": { "properties": { "event_type": { "const": "CAPACITY_PLAN_SET" } }, "required": ["event_type"] },
+      "then": {
+        "properties": {
+          "aggregate_type": { "const": "exhibit" },
+          "exhibit_id": { "type": "string", "minLength": 1 },
+          "mode_capacities": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object",
+              "required": ["seats", "assisted_device_slots"],
+              "properties": {
+                "seats": { "type": "integer", "minimum": 1 },
+                "assisted_device_slots": { "type": "integer", "minimum": 0 },
+                "minimum_gap_seconds": { "type": "integer", "minimum": 0 }
+              },
+              "additionalProperties": true
+            }
+          },
+          "group_policy": {
+            "type": "object",
+            "required": ["max_party_size", "max_share_of_capacity", "min_lead_hours"],
+            "properties": {
+              "max_party_size": { "type": "integer", "minimum": 1 },
+              "max_share_of_capacity": { "type": "number", "minimum": 0, "maximum": 1 },
+              "min_lead_hours": { "type": "integer", "minimum": 0 }
+            },
+            "additionalProperties": true
+          },
+          "standby_policy": {
+            "type": "object",
+            "required": ["promotion_window_seconds", "expiry_after_seconds"],
+            "properties": {
+              "promotion_window_seconds": { "type": "integer", "minimum": 1 },
+              "expiry_after_seconds": { "type": "integer", "minimum": 1 }
+            },
+            "additionalProperties": true
+          },
+          "wait_time_policy": {
+            "type": "object",
+            "required": ["use_observed_throughput", "horizon_seconds", "accommodation_extra_seconds"],
+            "properties": {
+              "use_observed_throughput": { "type": "boolean" },
+              "horizon_seconds": { "type": "integer", "minimum": 1 },
+              "accommodation_extra_seconds": { "type": "integer", "minimum": 0 }
+            },
+            "additionalProperties": true
+          }
+        },
+        "required": ["exhibit_id", "mode_capacities", "group_policy", "standby_policy", "wait_time_policy"]
+      }
+    },
+    {
+      "if": { "properties": { "event_type": { "const": "WAIT_TIME_PUBLISHED" } }, "required": ["event_type"] },
+      "then": {
+        "properties": {
+          "aggregate_type": { "const": "exhibit" },
+          "exhibit_id": { "type": "string", "minLength": 1 },
+          "mode_id": { "type": "string", "minLength": 1 },
+          "expected_wait_seconds": { "type": "integer", "minimum": 0 },
+          "accessible_lane_wait_seconds": { "type": "integer", "minimum": 0 },
+          "basis": { "type": "string", "enum": ["observed_throughput", "queue_position", "manual_override"] },
+          "observed_sessions": { "type": "integer", "minimum": 0 },
+          "valid_for_seconds": { "type": "integer", "minimum": 1 }
+        },
+        "required": ["exhibit_id", "mode_id", "expected_wait_seconds", "basis", "valid_for_seconds"]
+      }
+    },
+    {
+      "if": { "properties": { "event_type": { "const": "RESERVATION_REQUESTED" } }, "required": ["event_type"] },
+      "then": {
+        "properties": {
+          "aggregate_type": { "const": "reservation" },
+          "reservation_id": { "type": "string", "minLength": 1 },
+          "exhibit_id": { "type": "string", "minLength": 1 },
+          "mode_id": { "type": "string", "minLength": 1 },
+          "party_type": { "type": "string", "enum": ["group", "individual"] },
+          "party_size": { "type": "integer", "minimum": 1 },
+          "children_count": { "type": "integer", "minimum": 0 },
+          "accessibility_needs": {
+            "type": "array",
+            "items": { "type": "string", "enum": ["wheelchair_space", "assisted_device", "companion_seat", "low_stimulus", "extra_time"] }
+          },
+          "contact_ref": { "type": "string", "description": "联系信息只保存令牌引用，不保存明文联系方式" },
+          "requested_slot_at": { "type": "string", "format": "date-time" },
+          "joined_queue_at": { "type": "string", "format": "date-time" }
+        },
+        "required": ["reservation_id", "exhibit_id", "mode_id", "party_type", "party_size", "children_count", "accessibility_needs", "requested_slot_at", "joined_queue_at"]
+      }
+    },
+    {
+      "if": { "properties": { "event_type": { "const": "SLOT_ASSIGNED" } }, "required": ["event_type"] },
+      "then": {
+        "properties": {
+          "aggregate_type": { "const": "queue_slot" },
+          "slot_id": { "type": "string", "minLength": 1 },
+          "reservation_id": { "type": ["string", "null"] },
+          "standby_entry_id": { "type": ["string", "null"] },
+          "exhibit_id": { "type": "string", "minLength": 1 },
+          "mode_id": { "type": "string", "minLength": 1 },
+          "assigned_from": { "type": "string", "enum": ["reservation", "standby"] },
+          "party_size": { "type": "integer", "minimum": 1 },
+          "seats_taken": { "type": "integer", "minimum": 1 },
+          "queue_sequence": { "type": "integer", "minimum": 1 },
+          "starts_at": { "type": "string", "format": "date-time" },
+          "duration_planned_seconds": { "type": "integer", "minimum": 1 },
+          "wait_estimate_seconds": { "type": "integer", "minimum": 0 },
+          "estimate_basis": { "type": "string", "enum": ["observed_throughput", "queue_position", "manual_override"] },
+          "accessibility_allocations": {
+            "type": "object",
+            "properties": {
+              "assisted_device_slot": { "type": "boolean" },
+              "wheelchair_space": { "type": "boolean" },
+              "companion_seat": { "type": "boolean" },
+              "extra_time_seconds": { "type": "integer", "minimum": 0 }
+            },
+            "additionalProperties": true
+          }
+        },
+        "required": ["slot_id", "exhibit_id", "mode_id", "assigned_from", "party_size", "seats_taken", "queue_sequence", "starts_at", "duration_planned_seconds", "wait_estimate_seconds", "estimate_basis", "accessibility_allocations"]
+      }
+    },
+    {
+      "if": { "properties": { "event_type": { "const": "RESERVATION_CANCELLED" } }, "required": ["event_type"] },
+      "then": {
+        "properties": {
+          "aggregate_type": { "const": "reservation" },
+          "reservation_id": { "type": "string", "minLength": 1 },
+          "exhibit_id": { "type": "string" },
+          "mode_id": { "type": "string" },
+          "cancelled_at": { "type": "string", "format": "date-time" },
+          "reason": { "type": "string" },
+          "released_seats": { "type": "integer", "minimum": 1 },
+          "released_assisted_device_slots": { "type": "integer", "minimum": 0 }
+        },
+        "required": ["reservation_id", "cancelled_at", "reason", "released_seats"]
+      }
+    },
+    {
+      "if": { "properties": { "event_type": { "const": "STANDBY_LIST_JOINED" } }, "required": ["event_type"] },
+      "then": {
+        "properties": {
+          "aggregate_type": { "const": "standby_entry" },
+          "standby_entry_id": { "type": "string", "minLength": 1 },
+          "exhibit_id": { "type": "string" },
+          "mode_id": { "type": "string" },
+          "party_size": { "type": "integer", "minimum": 1 },
+          "children_count": { "type": "integer", "minimum": 0 },
+          "accessibility_needs": { "type": "array", "items": { "type": "string" } },
+          "joined_at": { "type": "string", "format": "date-time" },
+          "queue_sequence": { "type": "integer", "minimum": 1 }
+        },
+        "required": ["standby_entry_id", "exhibit_id", "mode_id", "party_size", "children_count", "accessibility_needs", "joined_at", "queue_sequence"]
+      }
+    },
+    {
+      "if": { "properties": { "event_type": { "const": "STANDBY_PROMOTED" } }, "required": ["event_type"] },
+      "then": {
+        "properties": {
+          "aggregate_type": { "const": "standby_entry" },
+          "standby_entry_id": { "type": "string", "minLength": 1 },
+          "slot_id": { "type": "string", "minLength": 1 },
+          "promoted_at": { "type": "string", "format": "date-time" }
+        },
+        "required": ["standby_entry_id", "slot_id", "promoted_at"]
+      }
+    },
+    {
+      "if": { "properties": { "event_type": { "const": "STANDBY_EXPIRED" } }, "required": ["event_type"] },
+      "then": {
+        "properties": {
+          "aggregate_type": { "const": "standby_entry" },
+          "standby_entry_id": { "type": "string", "minLength": 1 },
+          "expired_at": { "type": "string", "format": "date-time" },
+          "reason": { "type": "string" }
+        },
+        "required": ["standby_entry_id", "expired_at", "reason"]
+      }
+    },
+    {
+      "if": { "properties": { "event_type": { "const": "SLOT_CHECKED_IN" } }, "required": ["event_type"] },
+      "then": {
+        "properties": {
+          "aggregate_type": { "const": "queue_slot" },
+          "slot_id": { "type": "string", "minLength": 1 },
+          "checked_in_at": { "type": "string", "format": "date-time" }
+        },
+        "required": ["slot_id", "checked_in_at"]
+      }
+    },
+    {
+      "if": { "properties": { "event_type": { "const": "SLOT_NO_SHOW" } }, "required": ["event_type"] },
+      "then": {
+        "properties": {
+          "aggregate_type": { "const": "queue_slot" },
+          "slot_id": { "type": "string", "minLength": 1 },
+          "declared_at": { "type": "string", "format": "date-time" }
+        },
+        "required": ["slot_id", "declared_at"]
+      }
+    },
+    {
+      "if": { "properties": { "event_type": { "const": "FAULT_REPORTED" } }, "required": ["event_type"] },
+      "then": {
+        "properties": {
+          "aggregate_type": { "const": "fault" },
+          "fault_id": { "type": "string", "minLength": 1 },
+          "exhibit_id": { "type": "string", "minLength": 1 },
+          "fault_code": { "type": "string", "description": "终端上报的原始故障码，维护员视图保留原文" },
+          "severity": { "type": "string", "enum": ["low", "medium", "high", "safety"] },
+          "affected_components": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+          "affected_modes": { "type": "array", "items": { "type": "string" } },
+          "detected_by": { "type": "string", "enum": ["terminal", "manual", "monitoring"] },
+          "detected_at": { "type": "string", "format": "date-time" },
+          "description": { "type": "string" },
+          "requires_safety_check": { "type": "boolean" }
+        },
+        "required": ["fault_id", "exhibit_id", "fault_code", "severity", "affected_components", "affected_modes", "detected_by", "detected_at", "description", "requires_safety_check"]
+      }
+    },
+    {
+      "if": { "properties": { "event_type": { "const": "MAINTENANCE_ORDER_OPENED" } }, "required": ["event_type"] },
+      "then": {
+        "properties": {
+          "aggregate_type": { "const": "maintenance_order" },
+          "order_id": { "type": "string", "minLength": 1 },
+          "fault_id": { "type": "string", "minLength": 1 },
+          "exhibit_id": { "type": "string" },
+          "scope_components": { "type": "array", "items": { "type": "string" } },
+          "scope_modes": { "type": "array", "items": { "type": "string" } },
+          "opened_at": { "type": "string", "format": "date-time" },
+          "assigned_team": { "type": "string" },
+          "safety_check_required": { "type": "boolean" },
+          "required_actions": { "type": "array", "items": { "type": "string" } }
+        },
+        "required": ["order_id", "fault_id", "exhibit_id", "scope_components", "scope_modes", "opened_at", "safety_check_required", "required_actions"]
+      }
+    },
+    {
+      "if": { "properties": { "event_type": { "const": "MAINTENANCE_PROGRESS_LOGGED"  } } },
+      "then": {
+        "properties": {
+          "aggregate_type": { "const": "maintenance_order" },
+          "order_id": { "type": "string", "minLength": 1 },
+          "status": { "type": "string", "enum": ["diagnosing", "parts_waiting", "repairing", "resolved", "cancelled"] },
+          "note": { "type": "string" },
+          "logged_at": { "type": "string", "format": "date-time" }
+        },
+        "required": ["order_id", "status", "logged_at"]
+      }
+    },
+    {
+      "if": { "properties": { "event_type": { "const": "MAINTENANCE_ORDER_RESOLVED"  } } },
+      "then": {
+        "properties": {
+          "aggregate_type": { "const": "maintenance_order" },
+          "order_id": { "type": "string", "minLength": 1 },
+          "repaired_components": { "type": "array", "items": { "type": "string" } },
+          "unresolved_components": { "type": "array", "items": { "type": "string" } },
+          "resolved_at": { "type": "string", "format": "date-time" },
+          "technician_id": { "type": "string" },
+          "safety_check_required": { "type": "boolean" }
+        },
+        "required": ["order_id", "repaired_components", "unresolved_components", "resolved_at", "technician_id", "safety_check_required"]
+      }
+    },
+    {
+      "if": { "properties": { "event_type": { "const": "SAFETY_CHECK_PASSED"  } } },
+      "then": {
+        "properties": {
+          "aggregate_type": { "const": "maintenance_order" },
+          "order_id": { "type": "string", "minLength": 1 },
+          "checked_components": { "type": "array", "items": { "type": "string" } },
+          "cleared_modes": { "type": "array", "items": { "type": "string" } },
+          "checklist_version": { "type": "string" },
+          "checked_by": { "type": "string" },
+          "passed_at": { "type": "string", "format": "date-time" },
+          "findings": { "type": "string" }
+        },
+        "required": ["order_id", "checked_components", "cleared_modes", "checklist_version", "checked_by", "passed_at"]
+      }
+    },
+    {
+      "if": { "properties": { "event_type": { "const": "EXHIBIT_RELEASED"  } } },
+      "then": {
+        "properties": {
+          "aggregate_type": { "const": "exhibit" },
+          "exhibit_id": { "type": "string", "minLength": 1 },
+          "order_id": { "type": ["string", "null"] },
+          "released_components": { "type": "array", "items": { "type": "string" } },
+          "released_modes": { "type": "array", "items": { "type": "string" } },
+          "released_at": { "type": "string", "format": "date-time" },
+          "released_by": { "type": "string" }
+        },
+        "required": ["exhibit_id", "released_components", "released_modes", "released_at", "released_by"]
+      }
+    },
+    {
+      "if": { "properties": { "event_type": { "const": "SESSION_STARTED"  } } },
+      "then": {
+        "properties": {
+          "aggregate_type": { "const": "visit_session" },
+          "session_id": { "type": "string", "minLength": 1 },
+          "slot_id": { "type": "string" },
+          "exhibit_id": { "type": "string" },
+          "mode_id": { "type": "string" },
+          "exhibit_version": { "type": "integer", "minimum": 1 },
+          "pinned_rules": { "$ref": "#/definitions/rules_ref" },
+          "component_assignments": { "type": "array", "items": { "type": "string" } },
+          "accommodations": {
+            "type": "object",
+            "properties": {
+              "assisted_device": { "type": "boolean" },
+              "wheelchair_space": { "type": "boolean" },
+              "companion_seat": { "type": "boolean" },
+              "extra_time_seconds": { "type": "integer", "minimum": 0 }
+            },
+            "additionalProperties": true
+          },
+          "client_event_id": { "type": "string", "minLength": 1 },
+          "client_seq": { "type": "integer", "minimum": 1 },
+          "client_recorded_at": { "type": "string", "format": "date-time" },
+          "server_received_at": { "type": "string", "format": "date-time" },
+          "offline_batched": { "type": "boolean" }
+        },
+        "required": ["session_id", "slot_id", "exhibit_id", "mode_id", "exhibit_version", "pinned_rules", "component_assignments", "accommodations", "client_event_id", "client_seq", "client_recorded_at", "server_received_at", "offline_batched"]
+      }
+    },
+    {
+      "if": { "properties": { "event_type": { "const": "SESSION_PAUSED"  } } },
+      "then": {
+        "properties": {
+          "aggregate_type": { "const": "visit_session" },
+          "session_id": { "type": "string", "minLength": 1 },
+          "reason": { "type": "string", "enum": ["visitor", "equipment", "changeover"] },
+          "client_event_id": { "type": "string" },
+          "client_seq": { "type": "integer", "minimum": 1 },
+          "client_recorded_at": { "type": "string", "format": "date-time" },
+          "server_received_at": { "type": "string", "format": "date-time" },
+          "offline_batched": { "type": "boolean" }
+        },
+        "required": ["session_id", "reason", "client_event_id", "client_seq", "client_recorded_at", "server_received_at", "offline_batched"]
+      }
+    },
+    {
+      "if": { "properties": { "event_type": { "const": "SESSION_RESUMED"  } } },
+      "then": {
+        "properties": {
+          "aggregate_type": { "const": "visit_session" },
+          "session_id": { "type": "string", "minLength": 1 },
+          "client_event_id": { "type": "string" },
+          "client_seq": { "type": "integer", "minimum": 1 },
+          "client_recorded_at": { "type": "string", "format": "date-time" },
+          "server_received_at": { "type": "string", "format": "date-time" },
+          "offline_batched": { "type": "boolean" }
+        },
+        "required": ["session_id", "client_event_id", "client_seq", "client_recorded_at", "server_received_at", "offline_batched"]
+      }
+    },
+    {
+      "if": { "properties": { "event_type": { "const": "SESSION_COMPLETED"  } } },
+      "then": {
+        "properties": {
+          "aggregate_type": { "const": "visit_session" },
+          "session_id": { "type": "string", "minLength": 1 },
+          "completed_normally": { "type": "boolean" },
+          "abandonment_reason": { "type": ["string", "null"] },
+          "client_event_id": { "type": "string" },
+          "client_seq": { "type": "integer", "minimum": 1 },
+          "client_recorded_at": { "type": "string", "format": "date-time" },
+          "server_received_at": { "type": "string", "format": "date-time" },
+          "offline_batched": { "type": "boolean" }
+        },
+        "required": ["session_id", "completed_normally", "abandonment_reason", "client_event_id", "client_seq", "client_recorded_at", "server_received_at", "offline_batched"]
+      }
+    },
+    {
+      "if": { "properties": { "event_type": { "const": "SESSION_RECORDED"  } } },
+      "then": {
+        "properties": {
+          "aggregate_type": { "const": "visit_session" },
+          "session_id": { "type": "string", "minLength": 1 },
+          "exhibit_id": { "type": "string" },
+          "exhibit_version": { "type": "integer", "minimum": 1 },
+          "pinned_rules": { "$ref": "#/definitions/rules_ref" },
+          "started_at": { "type": "string", "format": "date-time" },
+          "completed_at": { "type": "string", "format": "date-time" },
+          "merged_client_event_ids": { "type": "array", "items": { "type": "string" } },
+          "timeline": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["client_event_id", "client_seq", "phase", "at"],
+              "properties": {
+                "client_event_id": { "type": "string" },
+                "client_seq": { "type": "integer" },
+                "phase": { "type": "string", "enum": ["started", "paused", "resumed", "completed"] },
+                "at": { "type": "string", "format": "date-time" }
+              },
+              "additionalProperties": true
+            }
+          },
+          "paused_seconds": { "type": "integer", "minimum": 0 },
+          "effective_duration_seconds": { "type": "integer", "minimum": 0 },
+          "analytics_eligible": { "type": "boolean" },
+          "identifier_scrubbing": {
+            "type": "object",
+            "required": ["fields_removed"],
+            "properties": {
+              "fields_removed": { "type": "array", "items": { "type": "string" } }
+            },
+            "additionalProperties": true
+          },
+          "finalized_at": { "type": "string", "format": "date-time" }
+        },
+        "required": ["session_id", "exhibit_id", "exhibit_version", "pinned_rules", "started_at", "completed_at", "merged_client_event_ids", "timeline", "paused_seconds", "effective_duration_seconds", "analytics_eligible", "identifier_scrubbing", "finalized_at"]
+      }
+    },
+    {
+      "if": { "properties": { "event_type": { "const": "LEARNING_FEEDBACK_SUBMITTED"  } } },
+      "then": {
+        "properties": {
+          "aggregate_type": { "const": "learning_feedback" },
+          "feedback_id": { "type": "string", "minLength": 1 },
+          "pseudonymous_ref": { "type": "string", "description": "轮换假名，不得回填为可定位个人的标识" },
+          "visitor_band": { "type": "string", "enum": ["child", "adult", "unknown"] },
+          "age_band": { "type": ["string", "null"], "description": "仅允许年龄段，禁止精确年龄" },
+          "exhibit_id": { "type": "string" },
+          "exhibit_version": { "type": "integer", "minimum": 1 },
+          "mode_id": { "type": "string" },
+          "based_on_rules": { "$ref": "#/definitions/rules_ref" },
+          "responses": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["item_id", "outcome"],
+              "properties": {
+                "item_id": { "type": "string" },
+                "outcome": { "type": "string", "enum": ["completed", "partial", "failed", "skipped"] },
+                "score": { "type": ["integer", "null"] }
+              },
+              "additionalProperties": true
+            }
+          },
+          "deidentified": { "type": "boolean" },
+          "submitted_at": { "type": "string", "format": "date-time" }
+        },
+        "required": ["feedback_id", "pseudonymous_ref", "visitor_band", "age_band", "exhibit_id", "exhibit_version", "mode_id", "based_on_rules", "responses", "deidentified", "submitted_at"]
+      }
+    }
+  ]
 }
